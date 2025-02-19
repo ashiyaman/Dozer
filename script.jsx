@@ -15,8 +15,7 @@ const todoList = document.querySelector("#todoList")
 const addTodoHandler = () => {
     const todoValue = todoInput.value
     if(todoValue){
-        const n = store.dispatch(addTodo(todoValue))
-        console.log(n)
+        store.dispatch(addTodo(todoValue))       
     }
 }
 

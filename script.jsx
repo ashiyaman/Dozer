@@ -1,5 +1,6 @@
-import todoReducer from "./todoReducer.js"
 import {createStore} from "redux"
+import todoReducer from "./todoReducer.js"
+import { addTodo, removeTodo } from "./actions.js"
 
 const store = createStore(todoReducer)
 
@@ -8,22 +9,22 @@ store.subscribe(() => {
 })
 
 const todoInput = document.querySelector("#todoInput")
-const addTodo = document.querySelector("#addTodo")
+const addTodoBtn = document.querySelector("#addTodo")
 const todoList = document.querySelector("#todoList")
 
 const addTodoHandler = () => {
     const todoValue = todoInput.value
     if(todoValue){
-        store.dispatch({type: "ADD_TODO", payload: todoValue})
+        const n = store.dispatch(addTodo(todoValue))
+        console.log(n)
     }
 }
 
-addTodo.addEventListener("click", addTodoHandler)
+addTodoBtn.addEventListener("click", addTodoHandler)
 
 window.removeTodoHandler = (todoIndex) => {
-    console.log(todoIndex)
     if(todoIndex){
-        store.dispatch({type: "REMOVE_TODO", payload: todoIndex})
+        store.dispatch(removeTodo(todoIndex))
     }
 }
 

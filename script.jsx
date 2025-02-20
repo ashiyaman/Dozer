@@ -2,7 +2,7 @@ import {createStore} from "redux"
 import todoReducer from "./todoReducer.js"
 import { addTodo, removeTodo } from "./actions.js"
 
-const store = createStore(todoReducer)
+const store = createStore(todoReducer, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__())
 
 store.subscribe(() => {
     updateTodoList()
@@ -22,9 +22,7 @@ const addTodoHandler = () => {
 addTodoBtn.addEventListener("click", addTodoHandler)
 
 window.removeTodoHandler = (todoIndex) => {
-    if(todoIndex){
-        store.dispatch(removeTodo(todoIndex))
-    }
+    store.dispatch(removeTodo(todoIndex))
 }
 
 const updateTodoList = () => {
